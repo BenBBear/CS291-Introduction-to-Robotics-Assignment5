@@ -1,0 +1,4 @@
+MOVE_UP = 1;
+MOVE_LEFT = 2;
+MOVE_RIGHT = 3;
+MOVE_DOWN = 4;
