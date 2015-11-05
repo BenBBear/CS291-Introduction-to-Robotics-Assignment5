@@ -38,7 +38,7 @@ def start_driver(sPort):
     
     rospy.init_node('driver', anonymous=True)
     rospy.Subscriber("/irobot/song", Bool, topic_song_callback);
-    rospy.Subscriber("/irobot/move", Int8, topic_song_callback);
+    rospy.Subscriber("/irobot/move", Int8, topic_move_callback);
     rospy.spin()
      
 
