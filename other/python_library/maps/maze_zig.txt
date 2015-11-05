@@ -1,0 +1,20 @@
+% File containing map information
+% Example map for practicing
+% Formatting:
+% wall x1 y1 x2 y2
+%   Order does not matter between the points
+%   Units are meters
+
+% right and wall
+wall 0.0 -1.5 6.0 -1.5 
+wall 6.0 -1.5 6.0 8.0
+wall 6.0 8.0 8.0 10.0
+wall 8.0 10.0 8.0 -3.0
+wall 8.0 -3.0 19.0 8.0
+
+% left hand wall
+wall 0.0 1.5 3.0 1.5
+wall 3.0 1.5 3.0 10.0
+wall 3.0 10.0 11.0 17.0
+wall 11.0 17.0 11.0 4.0
+wall 11.0 4.0 19.0 12.0
