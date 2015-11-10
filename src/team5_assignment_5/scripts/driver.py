@@ -12,9 +12,19 @@ VELOCITYCHANGE = 200
 ANGULARCHANGE = 200
 
 
+def mprint(x):
+    print "[Error in Driver.py]" + x
+
+
 def start_driver(sPort):
     sBaud = 57600
-    ser = serial.Serial(sPort,sBaud, timeout=1.0)
+    try:        
+        ser = serial.Serial(sPort,sBaud, timeout=1.0)
+        print("Connected to " + sPort + " successfully.")
+    except serial.serialutil.SerialException as e:
+        mprint("Not be able to to device:"+sPort)
+        mprint("\nGet Error:"+str(e))
+        return
 
     def topic_song_callback(msg):
         if msg.data:
@@ -44,7 +54,8 @@ def start_driver(sPort):
 
      
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    # mprint(str(sys.argv))
+    if len(sys.argv) < 4:
         start_driver('/dev/ttyUSB0');
     else:
         start_driver(sys.argv[1]);

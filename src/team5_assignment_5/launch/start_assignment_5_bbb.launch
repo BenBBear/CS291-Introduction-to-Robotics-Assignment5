@@ -1,0 +1,4 @@
+<launch>
+    <node pkg ="team5_assignment_5"  type="controller.py"  name="controller" output="screen" />
+    <node pkg ="team5_assignment_5"  type="driver.py"  name="driver" output="screen" />
+</launch>
