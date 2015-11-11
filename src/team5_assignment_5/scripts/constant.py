@@ -2,3 +2,7 @@ MOVE_UP = 1;
 MOVE_LEFT = 2;
 MOVE_RIGHT = 3;
 MOVE_DOWN = 4;
+SONG = 5;
+FULL = 6;
+PASSIVE = 7;
+STOP = 8;

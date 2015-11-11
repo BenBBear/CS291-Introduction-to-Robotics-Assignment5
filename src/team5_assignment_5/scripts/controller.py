@@ -21,41 +21,49 @@ def start_controller():
     curses.curs_set(0)
     screen.keypad(1)
     
-    songPub = rospy.Publisher ("/irobot/song", Bool, queue_size=10);
-    movePub = rospy.Publisher("/irobot/move", Int8, queue_size=10);
+    
+    Pub = rospy.Publisher("/irobot/key", Int8, queue_size=10);
     
     
     rospy.init_node('controller', anonymous=True)
     time.sleep(1)
     screen.addstr("\nPress a key to controll iRobot :D")
+    screen.addstr("\nf - full mode")
+    screen.addstr("\np - passive mode")
     screen.addstr("\ns - play a song")
     screen.addstr("\nleft arrow - counter-clockwise rotate")
     screen.addstr("\nright arrow - clockwise rotate")
     screen.addstr("\nup arrow - move straight foward")
     screen.addstr("\ndown arrow - move straight backward")
-    
+    screen.addstr("\nd - stop")
     while not rospy.is_shutdown():
         try:
             screen.addstr("\n>> ")
             event = screen.getch()
 
             if event == curses.KEY_UP:            
-                movePub.publish(C.MOVE_UP)
+                Pub.publish(C.MOVE_UP)
                 screen.addstr("move fowards")
             elif event == curses.KEY_DOWN:
-                movePub.publish(C.MOVE_DOWN)
+                Pub.publish(C.MOVE_DOWN)
                 screen.addstr("move backwards")
             elif event == curses.KEY_LEFT:
-                movePub.publish(C.MOVE_LEFT)
+                Pub.publish(C.MOVE_LEFT)
                 screen.addstr("rotate counter-clockwise")
             elif event == curses.KEY_RIGHT:
-                movePub.publish(C.MOVE_RIGHT)
+                Pub.publish(C.MOVE_RIGHT)
                 screen.addstr("rotate clockwise")
             elif event == 115 or event == 83:
-                songPub.publish(True)
+                Pub.publish(C.SONG)
                 screen.addstr("sing a song")
+            elif event == 70 or event == 102:
+                Pub.publish(C.FULL)
+            elif event == 68 or event == 100:
+                Pub.publish(C.STOP)
+            elif event == 80 or event == 112:
+                Pub.publish(C.PASSIVE)                    
             else:
-                screen.addstr('this is not a valid key');
+                screen.addstr('this is not a valid key' + str(event));
         except:            
             screen.clear();
         
